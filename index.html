@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dan Oswalt</title>
+    <link rel="stylesheet" href="vendors/styles/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One|Droid+Serif' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/modules.css">
+
+  </head>
+
+  <body>
+    <main>
+      <header class='title-header'>
+        <h1 id='title-headline'>Dan Oswalt</h1>
+        <nav id='nav-links'>
+          <ul>
+            <a href='/'><li id='blog-link' class="view active" data-content="blog">Blog</li><a>
+            <a href='/projects'><li id='projects-link' class="view" data-content="projects">Projects</li><a>
+          </ul>
+        </nav>
+      </header>
+      <section id='modules'>
+
+        <!-- Blog-entries load here -->
+        <section id='blog-module' class='module-view'></section>
+
+        <!-- Project-entries load here -->
+        <section id='project-module' class='module-view'>
+        </section>
+
+      </section>
+
+    </main>
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+  <script src="scripts/BlogEntry.js"></script>
+  <script src="scripts/BlogModule.js"></script>
+  <script src="scripts/BlogView.js"></script>
+  <script src="scripts/Project.js"></script>
+  <script src="scripts/ProjectModule.js"></script>
+  <script src="scripts/ProjectView.js"></script>
+  <script src="scripts/NewEntryModule.js"></script>
+  <script src="scripts/NewEntryView.js"></script>
+  <script src="vendors/scripts/page.js"></script>
+  <script src="scripts/routes.js"></script>
+
+</html>

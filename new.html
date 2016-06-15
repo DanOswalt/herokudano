@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Project</title>
+    <link rel="stylesheet" href="vendors/styles/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One|Droid+Serif' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/modules.css">
+
+    <main>
+      <div id='form-and-preview-container'>
+        <section id='new-project-form-module'>
+          <h2>New Project Form</h2>
+          <form action="#" id='new-project'>
+            <label>
+              <input type="text" id="project-title" placeholder="Title" required>
+            </label>
+            <label>
+              <input type="text" id="project-publishedBy" placeholder="Dan Oswalt" required>
+            </label>
+            <label>
+              <input type="text" id="project-url" placeholder="Project URL" required>
+            </label>
+            <label>
+              <input type="text" id="project-codeUrl" placeholder="Github URL" required>
+            </label>
+            <label>
+              <textarea id="project-description" placeholder="Description" rows="3" cols="40" required></textarea>
+            </label>
+            <label>
+              <textarea id="project-details" placeholder="Details" rows="20" cols="40" required></textarea>
+            </label>
+          </form>
+        </section>
+
+        <aside id='project-preview-container'>
+          <hr>
+          <h2>Preview:</h2>
+          <hr>
+          <section id="project-export">
+            <label>
+              Copy JSON or save to local storage
+              <input type="text" readonly id="project-json" />
+              <div id="new-project-submit" class='btn'>save</div>
+              <a href='index.html'><div id="go-home" class='btn'>home</div></a>
+            </label>
+          </section>
+          <h2 class='save-msg'></h2>
+          <!-- Project-views load here -->
+          <section id='projects-preview'>
+
+          </section>
+        </aside>
+      </div>
+
+      <footer id='site-footer'>
+      </footer>
+
+    </main>
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+  <script src="scripts/project.js"></script>
+  <script src="scripts/ProjectModule.js"></script>
+  <script src="scripts/ViewHandler.js"></script>
+  <script>
+    ViewHandler.init();
+    Handlebars.registerHelper('daysAgo', function() {
+      return parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago';
+    });
+  </script>
+</html>
