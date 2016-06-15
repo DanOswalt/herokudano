@@ -37,7 +37,6 @@
 
     compileHandlebarsTemplate : function(obj, templateElementId) {
       var appTemplate = $(templateElementId).html();
-      console.log(appTemplate);
       var compileTemplate = Handlebars.compile(appTemplate);
       return compileTemplate(obj);
     },
@@ -46,12 +45,11 @@
       var self = this;
 
       data.sort(function(a,b) {
-        return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
+        return (new Date(b.updated_at)) - (new Date(a.updated_at));
       });
 
       data.forEach(function(data) {
         var project = new Project(data);
-        console.log(project);
         var html = self.compileHandlebarsTemplate(project, '#project-template');
         self.attachHtmlToParent('#project-module', html);
 

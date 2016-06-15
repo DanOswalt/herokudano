@@ -69,17 +69,17 @@
     },
 
     saveToLocalStorage : function(key, value) {
-      console.log('save data');
+      console.log('save: ' + key);
       localStorage.setItem(key, JSON.stringify(value));
     },
 
     clearFromLocalStorage : function(key) {
-      console.log('clear data');
+      console.log('clear: ' + key);
       localStorage.removeItem(key);
     },
 
     loadFromLocalStorage : function(key) {
-      console.log('load data');
+      console.log('load: ' + key);
       return JSON.parse(localStorage.getItem(key));
     }
   };
