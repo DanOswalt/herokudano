@@ -68,6 +68,22 @@
       });
     },
 
+    filterByLanguage : function(ctx) {
+      
+    },
+
+    sortByLastUpdate : function(data) {
+      data.sort(function(a,b) {
+        return (new Date(b.updated_at)) - (new Date(a.updated_at));
+      });
+    },
+
+    sortByName : function(data) {
+      data.sort(function(a,b) {
+        return (b.name) - (a.name);
+      });
+    },
+
     saveToLocalStorage : function(key, value) {
       console.log('save: ' + key);
       localStorage.setItem(key, JSON.stringify(value));
