@@ -68,20 +68,52 @@
       });
     },
 
-    filterByLanguage : function(ctx) {
-      
+    filterByLanguage : function(data, language) {
+      console.log('filtering by language:', language);
+      return data.filter(function(project){
+        return project.language === language;
+      });
     },
 
-    sortByLastUpdate : function(data) {
-      data.sort(function(a,b) {
+    sortByRecent : function(data) {
+      console.log('sorting by recent');
+      return data.sort(function(a,b) {
         return (new Date(b.updated_at)) - (new Date(a.updated_at));
       });
     },
 
     sortByName : function(data) {
-      data.sort(function(a,b) {
+      console.log('sorting by name');
+      return data.sort(function(a,b) {
         return (b.name) - (a.name);
       });
+    },
+
+    sortAndFilter : function(context, next) {
+      var self = ProjectModule;
+      var language = context.params.language;
+      var sort = context.params.sort;
+      var projects = context.state.projectdata;
+      console.log('Filtering by: ', language);
+      console.log('Sorting by: ', sort);
+      console.log('Context.state.projectdata:', projects);
+
+      if(sort === 'name') {
+        projects = self.sortByName(projects);
+      } else {
+        projects = self.sortByRecent(projects);
+      }
+
+      if(language != 'all') {
+        projects = self.filterByLanguage(projects, language);
+      }
+
+      context.state.filtereddata = projects;
+      context.save();
+      console.log('state:',context.state.filtereddata);
+
+      next();
+
     },
 
     saveToLocalStorage : function(key, value) {

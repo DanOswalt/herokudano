@@ -11,39 +11,44 @@
 
   </head>
 
+  <script id="options-template" type="text/x-handlebars-template">
+    <option value="{{val}}">{{val}}</option>
+  </script>
+
   <body>
     <main>
       <header class='title-header'>
         <h1 id='title-headline'>Dan Oswalt</h1>
         <nav id='nav-links'>
           <ul>
-            <a href='/'><li id='blog-link' class="view active" data-content="blog">Blog</li><a>
-            <a href='/projects'><li id='projects-link' class="view" data-content="projects">Projects</li><a>
+            <a href='/'><li id='blog-link' class="view active" data-content="blog">Blog</li></a>
+            <a href='/projects'><li id='projects-link' class="view" data-content="projects">Projects</li></a>
           </ul>
         </nav>
       </header>
       <section id='modules'>
 
         <!-- Blog-entries load here -->
-        <section id='blog-module' class='module-view'></section>
+        <section id='blog-module' class='module-view'>
+        </section>
 
         <section id='project-view'>
-          <div id='select-boxes'>
-            <select id="language-filter">
-              <option value="all">Any Language</option>
+          <form id='select-boxes'>
+            <select id="language-choice">
+              <option value="all" name="language-filter-option">Any Language</option>
             </select>
             <select id="sort-choice">
-              <option value="name">Sort by Name<option>
-              <option value="date">Sort by Last Updated<option>
-            <select>
-          </div>
+              <option value="name" name="name-sort-option">Sort by Name<option>
+              <option value="recent" name="newest-sort-option">Sort by Last Updated<option>
+            </select>
+            <button id='filter-btn' type='button'>Filter</button>
+          </form>
+
           <!-- Project-entries load here -->
           <section id='project-module' class='module-view'>
-
-          </section>
-        </section
-
-      </section>
+          </section><!--entry-->
+        </section> <!--view-->
+      </section><!--modules-->
 
     </main>
   </body>

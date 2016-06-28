@@ -67,6 +67,20 @@
   opacity: 0.75;
 }
 
+.project-name {
+  color:#AC1603;
+}
+.project-description,
+.project-language,
+.project-updated {
+  color: #E8E2CC;
+}
+
+.project-updated {
+  opacity: 0.5;
+}
+
+
 #project-preview-container {
   margin: 0 auto;
   padding: 4% 8%;
