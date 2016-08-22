@@ -11,17 +11,13 @@
 
   </head>
 
-  <script id="options-template" type="text/x-handlebars-template">
-    <option value="{{val}}">{{val}}</option>
-  </script>
-
   <body>
     <main>
       <header class='title-header'>
         <h1 id='title-headline'>Dan Oswalt</h1>
         <nav id='nav-links'>
           <ul>
-            <a href='/'><li id='blog-link' class="view active" data-content="blog">Blog</li></a>
+            <a href='/blog'><li id='blog-link' class="view active" data-content="blog">Blog</li></a>
             <a href='/projects'><li id='projects-link' class="view" data-content="projects">Projects</li></a>
           </ul>
         </nav>
@@ -32,37 +28,16 @@
         <section id='blog-module' class='module-view'>
         </section>
 
-        <section id='project-view'>
-          <form id='select-boxes'>
-            <select id="language-choice">
-              <option value="all" name="language-filter-option">Any Language</option>
-            </select>
-            <select id="sort-choice">
-              <option value="name" name="name-sort-option">Sort by Name<option>
-              <option value="recent" name="newest-sort-option">Sort by Last Updated<option>
-            </select>
-            <button id='filter-btn' type='button'>Filter</button>
-          </form>
-
-          <!-- Project-entries load here -->
-          <section id='project-module' class='module-view'>
-          </section><!--entry-->
-        </section> <!--view-->
-      </section><!--modules-->
-
     </main>
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+  <script src="scripts/ListView.js"></script>
+  <script src="scripts/App.js"></script>
   <script src="scripts/BlogEntry.js"></script>
-  <script src="scripts/BlogModule.js"></script>
-  <script src="scripts/BlogView.js"></script>
   <script src="scripts/Project.js"></script>
-  <script src="scripts/ProjectModule.js"></script>
-  <script src="scripts/ProjectView.js"></script>
-  <!-- <script src="scripts/NewEntryModule.js"></script>
-  <script src="scripts/NewEntryView.js"></script> -->
+  <!-- <script src="scripts/NewEntryView.js"></script> -->
   <script src="vendors/scripts/page.js"></script>
   <script src="scripts/routes.js"></script>
 

@@ -1,60 +1,66 @@
 (function(module){
 
   /*****
-  * BlogModule
+  * App
   ***/
 
-  var BlogModule = {
+  var App = {
 
     /*******
      * init loads data either from localstorage or from file
      ***/
 
-    init : function(context, next) {
-      var self = BlogModule;
+    load : function(context, next) {
+      var self = App;
+      context.moduleName = context.params.module;
+      var name = context.params.module;
+      var dataKey = name + 'data';
+      var etagKey = name + 'etag';
+      context.dataKey = dataKey;
+      console.log('module:', context.moduleName);
 
       //check if blogdata state exists
-      if(context.state.blogdata) {
-        self.blogdata = context.state.blogdata;
+      if(context.state[dataKey]) {
+        self.data = context.state[dataKey];
         next();
       } else {
 
       //fetch the xhr header to compare etags
-        self.fetchFromFile('data/blogentries.json', 'HEAD')
+        self.fetchFromFile('data/' + dataKey + '.json', 'HEAD')
             .done(function(response, status, xhr){
               var etag = xhr.getResponseHeader('Etag');
-              var storedEtag = self.loadFromLocalStorage('blogetag');
+              var storedEtag = self.loadFromLocalStorage(etagKey);
 
               //if what is in local storage is the same, then fetch from local storage
               if(etag === storedEtag){
-                context.state.blogdata = self.loadFromLocalStorage('blogdata');
+                context.state[dataKey] = self.loadFromLocalStorage(dataKey);
                 context.save();
-                self.blogdata = context.state.blogdata;
+                self[dataKey] = context.state[dataKey];
                 next();
 
               //if they don't match, or nothing stored, load from the data file
               } else {
-                self.fetchFromFile('data/blogentries.json', 'GET')
+                self.fetchFromFile('data/' + dataKey + '.json', 'GET')
                     .done(function(response, status, xhr){
-                      context.state.blogdata = response.data;
+                      context.state[dataKey] = response.data;
                       context.save();
-                      self.blogdata = context.state.blogdata;
-                      self.saveToLocalStorage('blogdata', response.data);
-                      self.saveToLocalStorage('blogetag', etag);
+                      self[dataKey] = context.state[dataKey];
+                      self.saveToLocalStorage(dataKey, response.data);
+                      self.saveToLocalStorage(etagKey, etag);
                       next();
                     })
                     .fail(function(){
-                      context.state.blogdata = self.loadFromLocalStorage('blogdata');
+                      context.state[dataKey] = self.loadFromLocalStorage(dataKey);
                       context.save();
-                      self.blogdata = context.state.blogdata;
+                      self[dataKey] = context.state[dataKey];
                       next();
                     });
               };
             })
             .fail(function(){
-              context.state.blogdata = [];
+              context.state[dataKey] = self.loadFromLocalStorage(dataKey);
               context.save();
-              self.blogdata = context.state.blogdata;
+              self[dataKey] = context.state[dataKey];
               next();
             });
       }
@@ -83,6 +89,6 @@
     }
   };
 
-  module.BlogModule = BlogModule;
+  module.App = App;
 
 })(window);

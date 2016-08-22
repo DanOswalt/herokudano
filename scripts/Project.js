@@ -6,10 +6,9 @@
 
   function Project(opts) {
     this.name = opts.name;
-    this.html_url = opts.html_url;
+    this.github_url = opts.github_url;
+    this.project_url = opts.project_url;
     this.description = opts.description;
-    this.language = opts.language;
-    this.updated_at = opts.updated_at;
   }
 
   module.Project = Project;
